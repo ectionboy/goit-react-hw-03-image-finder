@@ -3,6 +3,8 @@ import Searchbar from './Searchbar/Searchbar'
 import ImageGallery from './ImageGallery/ImageGallery'
 import { searchPhoto } from './api/imageFinder'
 import Button from './Button/Button'
+import Loader from './Loader/Loader'
+import Modal from './Modal/Modal'
 export class App extends Component {
   state = {
     isloading: false,
@@ -10,6 +12,8 @@ export class App extends Component {
     photoName: '',
     page: '',
     btnLoadMore: false,
+    showModal: false,
+    selectedPhoto: null,
   }
 componentDidUpdate(_, prevState) { 
   const { photoName, page } = this.state;
@@ -58,7 +62,7 @@ componentDidUpdate(_, prevState) {
         );
       })
       .finally(() => {
-        this.setState({ isloading: false });
+        this.setState({ isloading: false});
       });
   }
 
@@ -79,16 +83,30 @@ componentDidUpdate(_, prevState) {
   onClickRender = () => {
     this.setState(prev => ({ page: prev.page + 1 }));
   };
+  onClickOpenModal = selectedPhoto => {
+    this.setState({ selectedPhoto, showModal: true });
+  };
+
+  closeModal = () => {
+    this.setState({ selectedPhoto: null, showModal: false });
+  };
+
 
   render() {
-    console.log(this.state)
+    const { isloading, showModal, selectedPhoto} = this.state;
+     console.log(this.state)
     return (
-      <>
+      <><div>
       <Searchbar onSubmit={this.onSubmit} />
+      {isloading && <Loader />}
       <ImageGallery photos={this.state.photos} />
       {this.state.photos.length !== 0 && this.state.btnLoadMore && (
           <Button onClickRender={this.onClickRender} />
         )}
+        {showModal && (
+          <Modal selectedPhoto={selectedPhoto} onClose={this.closeModal} />
+        )}
+        </div>
       </>
     )
   }
