@@ -99,7 +99,7 @@ componentDidUpdate(_, prevState) {
       <><div>
       <Searchbar onSubmit={this.onSubmit} />
       {isloading && <Loader />}
-      <ImageGallery photos={this.state.photos} />
+      <ImageGallery photos={this.state.photos} onClickImageItem={this.onClickOpenModal}/>
       {this.state.photos.length !== 0 && this.state.btnLoadMore && (
           <Button onClickRender={this.onClickRender} />
         )}

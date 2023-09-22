@@ -1,12 +1,26 @@
-import React, { Component } from 'react'
+import React from 'react';
 
-export default class ImageGalleryItem extends Component {
-  render() {
+export const ImageGalleryItem = ({
+  id,
+  webformatURL,
+  onClickImageItem,
+  largeImageURL,
+}) => {
+  const onImageClick = () => {
+    onClickImageItem({ src: largeImageURL});
+  };
+  return (
+    <li key={id} data-id={id} onClick={onImageClick}>
+      <img src={webformatURL} alt='pictureBig' />
+    </li>
+  );
+};
 
+export default ImageGalleryItem;
     // console.log(this.props)
-    return (
-    <li className="gallery-item">
-        <img src={this.props.webformatURL} alt="SmallPicture" />
-    </li>    
-    )}
-}
+    // return (
+    // <li className="gallery-item" onClick={onImageClick}>
+    //     <img src={this.props.webformatURL} alt="SmallPicture" />
+    // </li>    
+    // )}
+
