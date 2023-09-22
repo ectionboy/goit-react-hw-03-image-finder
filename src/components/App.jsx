@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import Searchbar from './Searchbar/Searchbar'
 import ImageGallery from './ImageGallery/ImageGallery'
 import { searchPhoto } from './api/imageFinder'
+import Button from './Button/Button'
 export class App extends Component {
   state = {
     isloading: false,
@@ -70,11 +71,14 @@ componentDidUpdate(_, prevState) {
     }
     this.setState({
       photoName: value,
-      page: '1', 
+      page: 1, 
       photos: [],
       btnLoadMore: false,
     });
   }
+  onClickRender = () => {
+    this.setState(prev => ({ page: prev.page + 1 }));
+  };
 
   render() {
     console.log(this.state)
@@ -82,6 +86,9 @@ componentDidUpdate(_, prevState) {
       <>
       <Searchbar onSubmit={this.onSubmit} />
       <ImageGallery photos={this.state.photos} />
+      {this.state.photos.length !== 0 && this.state.btnLoadMore && (
+          <Button onClickRender={this.onClickRender} />
+        )}
       </>
     )
   }
