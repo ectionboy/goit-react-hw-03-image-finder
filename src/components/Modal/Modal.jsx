@@ -26,7 +26,7 @@ export default class Modal extends Component {
     const {
       selectedPhoto: { src, alt },
     } = this.props;
-console.log(this.props)
+// console.log(this.props)
     return createPortal(
       <Overlay onClick={this.handleBackdropClick}>
         <Modaldiv>

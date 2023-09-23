@@ -1,4 +1,5 @@
 import React from 'react';
+import { GalleryItemLi, GalleryItemImg } from './ImageGalleryItem.styled'
 
 export const ImageGalleryItem = ({
   id,
@@ -10,17 +11,12 @@ export const ImageGalleryItem = ({
     onClickImageItem({ src: largeImageURL});
   };
   return (
-    <li key={id} data-id={id} onClick={onImageClick}>
-      <img src={webformatURL} alt='pictureBig' />
-    </li>
+    <GalleryItemLi key={id} data-id={id} onClick={onImageClick}>
+      <GalleryItemImg src={webformatURL} alt='pictureBig' />
+    </GalleryItemLi>
   );
 };
 
 export default ImageGalleryItem;
-    // console.log(this.props)
-    // return (
-    // <li className="gallery-item" onClick={onImageClick}>
-    //     <img src={this.props.webformatURL} alt="SmallPicture" />
-    // </li>    
-    // )}
+
 

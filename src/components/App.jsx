@@ -98,7 +98,7 @@ componentDidUpdate(_, prevState) {
 
   render() {
     const { isloading, showModal, selectedPhoto} = this.state;
-     console.log(this.state)
+     //console.log(this.state)
     return (
       <><Appdiv>
       <Searchbar onSubmit={this.onSubmit} />
