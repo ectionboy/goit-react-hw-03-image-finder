@@ -5,6 +5,8 @@ import { searchPhoto } from './api/imageFinder'
 import Button from './Button/Button'
 import Loader from './Loader/Loader'
 import Modal from './Modal/Modal'
+import {Appdiv} from './App.styled'
+
 export class App extends Component {
   state = {
     isloading: false,
@@ -14,7 +16,9 @@ export class App extends Component {
     btnLoadMore: false,
     showModal: false,
     selectedPhoto: null,
+    data:''
   }
+
 componentDidUpdate(_, prevState) { 
   const { photoName, page } = this.state;
   if (photoName !== prevState.photoName || page !== prevState.page) {
@@ -96,7 +100,7 @@ componentDidUpdate(_, prevState) {
     const { isloading, showModal, selectedPhoto} = this.state;
      console.log(this.state)
     return (
-      <><div>
+      <><Appdiv>
       <Searchbar onSubmit={this.onSubmit} />
       {isloading && <Loader />}
       <ImageGallery photos={this.state.photos} onClickImageItem={this.onClickOpenModal}/>
@@ -106,7 +110,7 @@ componentDidUpdate(_, prevState) {
         {showModal && (
           <Modal selectedPhoto={selectedPhoto} onClose={this.closeModal} />
         )}
-        </div>
+        </Appdiv>
       </>
     )
   }
